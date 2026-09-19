@@ -2,6 +2,7 @@
   "name": "shortcutdeck",
   "version": "1.0.0",
   "description": "Cross-platform companion app & GUI for the ShortcutDeck Arduino 6-button controller.",
+  "homepage": "https://github.com/Louiml/ShortcutDeck",
   "main": "src/main/main.js",
   "build": {
     "appId": "com.shortcutdeck.app",
