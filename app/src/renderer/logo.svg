@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="ShortcutDeck logo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f6feb"/>
+      <stop offset="1" stop-color="#0d2a52"/>
+    </linearGradient>
+    <linearGradient id="deckface" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#20262e"/>
+      <stop offset="1" stop-color="#151a20"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded app tile background -->
+  <rect x="8" y="8" width="240" height="240" rx="48" fill="url(#bg)"/>
+
+  <!-- Shortcut/Deck body: six-button grid panel -->
+  <g>
+    <rect x="46" y="68" width="164" height="120" rx="20" fill="url(#deckface)" stroke="#2c353f" stroke-width="4"/>
+
+    <!-- Six key "pads" (buttons) -->
+    <g fill="#3d4a55">
+      <rect x="62" y="84"  width="40" height="34" rx="8"/>
+      <rect x="108" y="84" width="40" height="34" rx="8"/>
+      <rect x="154" y="84" width="40" height="34" rx="8"/>
+      <rect x="62" y="124" width="40" height="34" rx="8"/>
+      <rect x="108" y="124" width="40" height="34" rx="8"/>
+      <rect x="154" y="124" width="40" height="34" rx="8"/>
+    </g>
+
+    <!-- Glowing "active" pad with a play glyph = the stream/shortcut activation -->
+    <rect x="108" y="124" width="40" height="34" rx="8" fill="#4f9cf9"/>
+    <path d="M121 132 L138 141 L121 150 Z" fill="#ffffff"/>
+  </g>
+
+</svg>

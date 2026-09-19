@@ -1,0 +1,69 @@
+name: Release ShortcutDeck
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform.name }}
+    runs-on: ${{ matrix.platform.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform:
+              name: Windows
+              os: windows-latest
+              build: win
+          - platform:
+              name: Linux
+              os: ubuntu-latest
+              build: linux
+          - platform:
+              name: macOS
+              os: macos-latest
+              build: mac
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Test
+        working-directory: app
+        run: npm test
+
+      - name: Build release (${{ matrix.platform.build }})
+        working-directory: app
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --${{ matrix.platform.build }} --publish always
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: shortcutdeck-${{ matrix.platform.name }}
+          path: |
+            app/dist/*.exe
+            app/dist/*.AppImage
+            app/dist/*.deb
+            app/dist/*.dmg
+            app/dist/*.zip
+            app/dist/latest*.yml
+          if-no-files-found: warn

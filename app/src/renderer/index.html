@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'" />
+  <title>ShortcutDeck</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="titlebar" data-window-drag>
+    <div class="titlebar-left">
+      <span class="logo"><img src="logo.svg" alt="ShortcutDeck" /></span>
+      <span class="title">ShortcutDeck</span>
+    </div>
+    <div class="titlebar-spacer" data-window-drag></div>
+    <div class="titlebar-controls">
+      <button class="tb-btn" id="tbMinimize" title="Minimize">&#x2013;</button>
+      <button class="tb-btn" id="tbMaximize" title="Maximize">&#x25A1;</button>
+      <button class="tb-btn tb-close" id="tbClose" title="Close">&#x2715;</button>
+    </div>
+  </div>
+
+  <header class="app-header">
+    <div class="device-bar">
+      <span id="deviceStatus" class="badge badge-off">No device</span>
+      <select id="portSelect" title="Serial port"></select>
+      <button id="connectBtn" class="btn">Connect</button>
+    </div>
+  </header>
+
+  <main class="content">
+    <section id="buttonGrid" class="button-grid scroll-area"></section>
+
+    <aside class="side scroll-area">
+      <div class="panel">
+        <h3>Connection Log</h3>
+        <div id="log" class="log scroll-area"></div>
+      </div>
+      <div class="panel help">
+        <h3>Tips</h3>
+        <ul>
+          <li>Set a button's <em>action</em> to <em>Launch</em> to open an app, file, folder or URL.</li>
+          <li>Switch to <em>Lua</em> and write a script; it runs on your PC when the button is pressed.</li>
+          <li>Use <code>deck.open(url)</code> and <code>deck.print(...)</code> inside scripts.</li>
+          <li>Connect your Arduino, then the label/icon push to the OLED automatically.</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

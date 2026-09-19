@@ -1,0 +1,74 @@
+{
+  "name": "shortcutdeck",
+  "version": "1.0.0",
+  "description": "Cross-platform companion app & GUI for the ShortcutDeck Arduino 6-button controller.",
+  "main": "src/main/main.js",
+  "build": {
+    "appId": "com.shortcutdeck.app",
+    "productName": "ShortcutDeck",
+    "copyright": "Copyright (c) 2026 louiml",
+    "icon": "src/renderer/logo.ico",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "src/renderer"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "Louiml",
+      "repo": "ShortcutDeck"
+    },
+    "win": {
+      "icon": "src/renderer/logo.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "icon": "src/renderer/logo.png",
+      "category": "public.app-category.utilities",
+      "target": [
+        { "target": "dmg", "arch": ["x64", "arm64"] },
+        { "target": "zip", "arch": ["x64", "arm64"] }
+      ]
+    },
+    "linux": {
+      "icon": "src/renderer/logo.png",
+      "category": "Utility",
+      "target": [
+        { "target": "AppImage", "arch": ["x64"] },
+        { "target": "deb", "arch": ["x64"] }
+      ],
+      "maintainer": "louiml"
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "test": "node src/main/test-lua.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux",
+    "dist:mac": "electron-builder --mac",
+    "release": "electron-builder --publish always"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@serialport/parser-readline": "^12.0.0",
+    "fengari": "^0.1.4",
+    "serialport": "^12.0.0"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  }
+}
